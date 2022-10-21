@@ -23,11 +23,13 @@ button:hover :active :checked{
 }
 /*container*/
 body{
-    background-image: url('../assets/2352.jpg');
+    background-image: url('../assets/space.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 .filter{
     background-image: linear-gradient(to bottom, rgb(13, 0, 45), transparent);
@@ -35,6 +37,7 @@ body{
     top: 0%;
     height: 100vh;
     width: 100%;
+    margin-top: 0%;
 }
 /*navbar*/
 nav{
@@ -47,7 +50,7 @@ nav{
     align-items: center;
     z-index: 1;
     transform: translateY(-10vh);
-    transition: all 1000ms 1000ms ease-out;
+    transition: transform 1000ms 900ms ease-out;
 }
 nav.shown{
     transform: translateY(0vh);
@@ -72,39 +75,40 @@ nav.shown{
     align-items: center;
     position: absolute;
     z-index: 4;
-    height: 100vh;
+    height: 101vh;
     width: 21vw;
     background-color: rgb(17, 0, 56);
     pointer-events: none;
 }
 .preloader.done{
-    transform: translateY(-100vh);
+    transform: translateY(-110vh);
 }
 .first{
     left: 0vw;
-    transition: all 500ms 200ms ease-out;
+    transition: transform 500ms 200ms ease-out;
 }
 .second{
     left: 20vw;
-    transition: all 500ms 400ms ease-out;
+    transition: transform 500ms 400ms ease-out;
 }
 .third{
     left: 40vw;
-    transition: all 500ms 500ms ease-out;
+    transition: transform 500ms 500ms ease-out;
 }
 .fourth{
     left: 60vw;
-    transition: all 500ms 400ms ease-out;
+    transition: transform 500ms 400ms ease-out;
 }
 .last{
     left: 80vw;
-    transition: all 500ms 200ms ease-out;
+    transition: transform 500ms 200ms ease-out;
 }
 .preloader h3{
     color: white;
     font-size: 2rem;
     opacity: 1;
     transition: all 500ms 500ms ease-out;
+    transition-property: opacity, transform;
 }
 h3.gone{
     opacity: 0;
@@ -132,7 +136,8 @@ h3.gone{
     margin-right: auto;
     transform: translateX(-50vw);
     opacity: 0;
-    transition: all 1000ms 1000ms ease-out;
+    transition: all 1000ms 900ms ease-out;
+    transition-property: opacity, transform;
 }
 .description.loaded{
     opacity: 1;
@@ -162,7 +167,7 @@ h3.gone{
     border: none;
     outline: none;
     padding: 0.7rem 2rem;
-    transition: all 800ms ease;
+    transition: background-color 800ms ease;
 }
 .explore:hover{
     background-color: rgb(13, 37, 172);
@@ -178,13 +183,8 @@ h3.gone{
     width: 60%;
     height: 100%;
     padding: 3rem;
-    opacity: 0;
-    transform: translateX(70vw);
-    transition: all 1000ms 1000ms ease-out;
-}
-.box.done{
     opacity: 1;
-    transform: translateX(0%);
+    overflow: hidden;
 }
 .card{
     position: relative;
@@ -194,7 +194,6 @@ h3.gone{
     color: white;
     border-radius: 10px;
     margin: 20px;
-    transition: all 300ms ease;
 }
 .card:hover{
     transform: scale(1.1);
@@ -232,16 +231,46 @@ h3.gone{
     margin: 10px;
 }
 .box #one{
-    flex: 1;
-    z-index: 2;
+    opacity: 0;
+    transform: translateY(-100vh);
+    transition: all 800ms 500ms ease-out;
+    transition-property: opacity, transform;
 }
+
 .box #two{
-    flex: 2;
-    z-index: 3;
+    opacity: 0;
+    transform: translateX(100vh);
+    transition: all 800ms 700ms ease-out;
+    transition-property: opacity, transform;
 }
 .box #three{
-    flex: 1 ;
-    z-index: 1;
+    opacity: 0;
+    transform: translateX(-100vh);
+    transition: all 800ms 900ms ease-out;
+    transition-property: opacity, transform;
+}
+.box #four{
+    opacity: 0;
+    transform: translateY(100vh);
+    transition: all 800ms 1100ms ease-out;
+    transition-property: opacity, transform;
+}
+/*card show*/
+#one.showOne{
+    opacity: 1;
+    transform: translateY(0vh);
+}
+#two.showTwo{
+    opacity: 1;
+    transform: translateX(0vh);
+}
+#three.showThree{
+    opacity: 1;
+    transform: translateY(0vh);
+}
+#four.showFour{
+    opacity: 1;
+    transform: translateX(0vh);
 }
 footer .copyright{
     width: 100%;
@@ -253,7 +282,8 @@ footer .copyright{
     padding: 1rem;
     opacity: 0;
     transform: translateY(20vh);
-    transition: all 1000ms 1000ms ease-out;
+    transition: all 1000ms 900ms ease-out;
+    transition-property: opacity, transform;
 }
 .copyright.finished{
     opacity: 1;
@@ -261,41 +291,97 @@ footer .copyright{
 }
 /*responsivity*/
 @media screen and (max-width: 1278px) {
+    .box{
+        height: 100%;
+    }
     .bottom{
         width: 100%;
+    }
+    .description{
+        width: 50%;
+    }
+    .card{
+        width: 90%;
+        height: 90%;
+    }
+    .card .card-content.shown{
+        top: 35%;
+    }
+    .card-desc{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 1023px) {
+    .description{
+        width: 50%;
+        overflow: hidden;
+    }
+    .description .left .title{
+        font-size: 48px;
+    }
+    .card{
+        width: 90%;
+        height: 80%;
+    }
+    .card .card-content.shown{
+        top: 15%;
+    }
+    .card-desc{
+        font-size: 16px;
+    }
+    .box{
+        width: 50%;
+        height: 60%;
+        padding: 0%;
     }
 }
 @media screen and (max-width: 768px) {
-    .section_landing{
-        height: 100vh;
-    }
-    .preloader .loading{
-        font-size: 16px;
-    }
-}
-@media screen and (max-width: 425px) {
-    .section_landing{
-        height: 200vh;
+    .description{
+        width: 50%;
+        overflow: hidden;
+        padding: 1rem;
+        margin: 1rem;
     }
     .box{
-        flex-direction: column;
-        height: 90vh;
+        width: 50%;
+        padding: 0%;
     }
     .card{
-        width: 80vw;
-        height: 50%;
+        width: 90%;
+        height: 80%;
     }
-    .card .card-content.shown{
-        transform: translateY(-70%);
+}
+@media screen and (max-width: 640px) {
+    .preloader .loading{
+        font-size: 12px;
+    }
+    .section_landing{
+        flex-direction: column;
+    }
+    .explore{
+        background-color: rgb(13, 37, 172);
+    }
+    .explore:hover{
+        background-color: rgb(17, 0, 56);
     }
     .description{
-        width: 70%;
-        height: 90vh;
-        margin-left: 0rem;
+       width: 100%;
+       height: 30%;
+       padding: 1rem;
     }
-    .bottom{
+    .card-desc{
+        font-size: 14px;
+    }
+    .left{
+        padding: 10px;
+    }
+    .box{
         width: 100%;
-        margin-left: 0rem;
+        height: 70%;
+    }
+    .card{
+       width: 80%;
+       height: 80%;
     }
     .line{
         width: 30px;
@@ -320,7 +406,8 @@ footer .copyright{
         top: 0%;
         flex-direction: column;
         width: 100%;
-        transition: all 1s ease-out;
+        transition: all 1000ms ease-out;
+        transition-property: height, transform;
         transform: translateY(-100vh);
         background-color: rgb(17, 0, 56);
     }
@@ -330,12 +417,15 @@ footer .copyright{
     }
     .nav-links li:nth-child(1){
         transition: all 600ms 100ms;
+        transition-property: opacity, transform;
     }
     .nav-links li:nth-child(2){
         transition: all 600ms 200ms;
+        transition-property: opacity, transform;
     }
     .nav-links li:nth-child(3){
         transition: all 600ms 300ms;
+        transition-property: opacity, transform;
     }
     .nav-links li{
         transform: translateY(-100vh);

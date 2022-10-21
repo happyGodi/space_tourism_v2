@@ -13,7 +13,6 @@ const contentTwo = document.getElementById('contentTwo');
 const contentThree = document.getElementById('contentThree');
 const contentFour = document.getElementById('contentFour');
 const description = document.querySelector('.description');
-const box = document.querySelector('.box');
 const copyright = document.querySelector('.copyright');
 const preloaderContent = document.querySelector('.preloader h3');
 
@@ -57,8 +56,11 @@ window.addEventListener('load', () => {
     preloaders.forEach(preloader => {
         preloader.classList.toggle('done');
     });
+    cardOne.classList.toggle('showOne');
+    cardTwo.classList.toggle('showTwo');
+    cardThree.classList.toggle('showThree');
+    cardFour.classList.toggle('showFour');
     description.classList.toggle('loaded');
-    box.classList.toggle('done');
     copyright.classList.toggle('finished');
     preloaderContent.classList.toggle('gone');
 });
